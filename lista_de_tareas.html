@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="utf-8">
+<html>
+
+<head>
+  <title>Lista de Tareas</title>
+  <style>
+
+    body {
+      background: rgb(129, 146, 128);
+    }
+
+    form {
+      
+      background: lightgray;
+      margin: 20pt auto;
+      padding: 10 pt;
+      width: 70%;
+    }
+  </style>
+
+  <style type="text/css">
+ 
+    .boton_añadir_tareas {
+      font-size: 12px;
+      font-family: Verdana, Helvetica;
+      font-weight: bold;
+      color: white;
+      background: #638cb5;
+      border: 10005px;
+      width: 90px;
+      height: 55px;
+    }
+
+    .boton_borrar_tareas {
+      font-size: 12px;
+      font-family: Verdana, Helvetica;
+      font-weight: bold;
+      color: white;
+      background: #b41010;
+      border: 10005px;
+      width: 90px;
+      height: 55px;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <h1>Lista de Tareas</h1>
+  <br>
+   <!--action="procesar.php"-->
+  <form action="" method="post" id="tareas" onsubmit="return Añadir_tarea(event);">
+    <br>
+   <label for="Lista de Tareas">Lista de Tareas</label>
+   
+    <input type="text" name="tareas" required>
+    <br>
+    <div class="boton">
+      <input type="submit" onclick="añadirTareas()" class="boton_añadir_tareas" value="Añadir Tareas">
+    </div>
+       <br>
+
+      <div class="boton">
+        <input type="submit" onclick="borrarTareas()" class="boton_borrar_tareas" value="Borrar Tareas">
+      </div>
+
+  </form>
+
+      <ul id="tareas"></ul>
+
+     <script src="app.js"></script>
+ 
+  
+</body>
+
+</html>
