@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="utf-8">
+<html>
+
+<head>
+  <title>Formulario de Autodiagnostico</title>
+  <style>
+    body {
+      background: rgb(177, 61, 82);
+    }
+
+    form {
+      background: lightgray;
+      margin: 20pt auto;
+      padding: 10 pt;
+      width: 70%;
+    }
+  </style>
+
+  <style type="text/css">
+    .boton_enviar_sin_validacion {
+      font-size: 15px;
+      font-family: Verdana, Helvetica;
+      font-weight: bold;
+      color: white;
+      background: #638cb5;
+      border: 12115px;
+      width: 90px;
+      height: 25px;
+    }
+
+    .boton_enviar_con_validacion {
+      font-size: 15px;
+      font-family: Verdana, Helvetica;
+      font-weight: bold;
+      color: white;
+      background: #638cb5;
+      border: 12115px;
+      width: 90px;
+      height: 25px;
+    }
+
+    .boton_limpiar {
+      font-size: 15px;
+      font-family: Verdana, Helvetica;
+      font-weight: bold;
+      color: white;
+      background: #b41010;
+      border: 15px;
+      width: 90px;
+      height: 25px;
+
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1>Formulario de autodiagnostico</h1>
+  <br>
+  <h2>Datos do paciente</h2>
+  <!--action="procesar.php"-->
+  <form action="" method="post" id="autodiagnostico" onsubmit="return confirmar_envio(event);">
+    <br>
+    <label for="apellidos">Apellidos:</label>
+    <input type="text" name="apellidos" required pattern="[A-Za-z ]+">
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" required pattern="[A-Za-z]+">
+    <label for="nif">NIF</label>
+    <input type="text" name="dni" oninput="control_dni(event)" pattern="^[0-9][8][A-Z]{1}+" required>
+    <br>
+    <br>
+    <label for="correo">Email:</label>
+    <input type="email" name="email" oninput="control_email(event)" id="email">
+    <label for="tel">Teléfono (9 dígitos comenzando por 9, 8, 7 o 6)</label>
+    <input type="tel" name="telefono" pattern="^[9|8|7|6]\d{8}$" id="telefono">
+    <br>
+    <br>
+    <label for="Data de nacemento">Data de nacemento:</label>
+    <input type="date" name="fecha" oninput="control_fecha(event)" required>
+    <br>
+    <br>
+    <label for="Sexo">Sexo:</label>
+    <input type="radio" name="sexo" value="M">Mujer
+    <input type="radio" name="sexo" value="H">Hombre
+    <input type="radio" name="sexo" value="I" checked>???
+    <br>
+    <br>
+    <h2>Sintomas</h2>
+    <input type="checkbox" name="sintomas1" value="F" onchange="control_sintomas(event)">37,5ºC)
+    <input type="checkbox" name="sintomas2" value="P" onchange="control_sintomas(event)">Pérdida de gusto ou olfato
+    <input type="checkbox" name="sintomas3" value="D" onchange="control_sintomas(event)">Dor muscular
+    <input type="checkbox" name="sintomas4" value="R" onchange="control_sintomas(event)">Dificultade respiratoria
+    <input type="checkbox" name="sintomas5" value="M" onchange="control_sintomas(event)">Presenza de mucosas
+    <input type="checkbox" name="sintomas6" value="G" onchange="control_sintomas(event)
+            ">Inflamación de gorxa
+    <br>
+    <br>
+    <h3>Frecuencia</h3>
+    <select name="frecuencia" disabled>
+      <option value="1">Unha ou duas veces ó dia</option>
+      <option value="2">Poucas veces á semana</option>
+      <option value="3">Varias veces ó dia</option>
+      <option value="4">Nunca</option>
+    </select>
+    <br>
+    <br>
+    <h3>Observaciones</h3>
+
+    <div id="mensaje" class="form-text">maximo de 1000 caracteres o maximo de 100 palabras</div>
+    <textarea name="mensaje" oninput="control_mensaje(event)">
+
+
+          </textarea>
+    <br>
+    <br>
+    <br>
+    <div class="boton">
+      <input type="submit" onclick="control_email_telefono()" class="boton_enviar_con_validacion" value="Enviar
+                ">
+    </div>
+    <br>
+    <div class="boton">
+      <input type="submit" class="boton_enviar_sin_validacion" value="Enviar sin validación" formmethod="get"
+        formnovalidate>
+      <br>
+      <br>
+      <div class="boton">
+        <input class="boton_limpiar" type="reset" value="Limpiar">
+      </div>
+
+  </form>
+
+  <script>
+
+    var letras = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E", "T"];
+
+    function control_dni() {
+      var dnifield = event.target.value;
+      var letrafield = event.target;
+      var numero = parseInt(dnifield.substring(0, 8));
+      var letra = dnifield.substring(8)
+      var posicion = numero % 23;
+      var letra1 = letras[posicion];
+      if (letra == letra1) {
+
+        letrafield.setCustomValidity("")
+      } else
+        letrafield.setCustomValidity("Letra incorrecta")
+    }
+
+    function control_fecha(event) {
+      let datefield = event.target;
+      let fecha = new Date(datefield.value); // fecha introducida por el usuario
+      let ahora = new Date();                // fecha del sistema
+
+      if (fecha > ahora) {
+        datefield.setCustomValidity("La fecha tiene que ser anterior a la actual")
+      } else {
+        datefield.setCustomValidity("")
+      }
+    }
+    function control_email_telefono(event) {
+      const formulario = document.getElementById("autodiagnostico");
+
+      let email = formulario.email.value;
+      let telefono = formulario.telefono.value;
+
+      if (telefono === "" && email === "") {
+
+        formulario.telefono.setCustomValidity("Introduzca el telefono o el email");
+        return false
+
+      } else {
+
+        formulario.telefono.setCustomValidity("");
+        return true
+      }
+    }
+    function control_sintomas(evento) {
+      const formulario = document.getElementById("autodiagnostico");
+      let sintoma1 = formulario.sintomas1.checked;
+      let sintoma2 = formulario.sintomas2.checked;
+      let sintoma3 = formulario.sintomas3.checked;
+      let sintoma4 = formulario.sintomas4.checked;
+      let sintoma5 = formulario.sintomas5.checked;
+      let sintoma6 = formulario.sintomas6.checked;
+      if (sintoma1 || sintoma2 || sintoma3 || sintoma4 || sintoma5 || sintoma6) {
+        formulario.frecuencia.disabled = false;
+
+      } else {
+        formulario.frecuencia.disabled = true;
+      }
+    }
+
+    function control_email(event) {
+
+      let emailField = event.target;
+
+      {
+
+
+      }
+      if (emailField.validity.typeMismatch) {
+        emailField.setCustomValidity("Escriba bien el email")
+      } else {
+        emailField.setCustomValidity("");
+      }
+
+    }
+    function control_mensaje(event) {
+        let mensajeField = event.target;
+        let mensaje = mensajeField.value;
+        if (mensaje.length > 1000) {
+          mensajeField.setCustomValidity("El mensaje debe de ser de 1000 caracteres")
+        } else if (mensaje.split(" ").length > 100) {
+          mensajeField.setCustomValidity("Maximo 100 palabras");
+
+        } else { mensajeField.setCustomValidity("") }
+      }
+      function confirmar_envio(event) {
+        return confirm("Esta seguro de enviar los datos?");
+
+      } 
+  </script>
+
+</body>
+
+</html>

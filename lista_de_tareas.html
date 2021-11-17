@@ -50,17 +50,19 @@
 </head>
 
 <body>
+
+
   <h1>Lista de Tareas</h1>
   <br>
    <!--action="procesar.php"-->
-  <form action="" method="post" id="tareas" onsubmit="return Añadir_tarea(event);">
+  <form id="formulario_tareas" onsubmit="return añadirTareas()">
     <br>
    <label for="Lista de Tareas">Lista de Tareas</label>
    
     <input type="text" name="tareas" required>
     <br>
     <div class="boton">
-      <input type="submit" onclick="añadirTareas()" class="boton_añadir_tareas" value="Añadir Tareas">
+      <input type="submit"  class="boton_añadir_tareas" value="Añadir Tareas">
     </div>
        <br>
 

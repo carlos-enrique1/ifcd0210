@@ -1,39 +1,38 @@
-                  
-   const elemTareas = document.getElementById("tareas");
 
-   const formulario = document.getElementById("formulario_tareas");
+const elemTareas = document.getElementById("tareas");
 
-   var tareas = ["Aspirar al perro"];
+const formulario = document.getElementById("formulario_tareas");
 
-   function mostrarTareas()
+var tareas = ["Aspirar al perro"];
 
-   { var s=""; 
+function mostrarTareas() {
 
-     for (let i =0; i < tareas.length; i++)
+   var s = "";
 
-     { s+= "<li>"+tareas[i]+"</li>"}
+   for (let i = 0; i < tareas.length; i++) {
 
-     elemTareas.innerHTML=s;
+      s += "<li>" + "<input type='checkbox'></input>" + tareas[i] + "</li>";   }
+
+
+   elemTareas.innerHTML = s;
+
+
 }
 
+function añadirTareas() {
 
-    function añadirTareas()     
-    {   
-       let tarea = formulario_tareas.tareas.value;
+   let tarea = formulario_tareas.tareas.value;
 
-       tareas.push(tarea);
+   tareas.push(tarea);
 
-       mostrarTareas();
-
-       
-    }
-
-    
-
-          
-   
    mostrarTareas();
 
-   añadirTareas();
+   return false
+}
 
- 
+mostrarTareas();
+
+
+
+
+
