@@ -5,7 +5,7 @@ const formulario = document.getElementById("formulario_tareas");
 
 var tareas = ["Aspirar al perro"];
 
-var tareasHechas = [ ];
+var tareasHechas = [];
 
 
 function mostrarTareas() {
@@ -15,23 +15,24 @@ function mostrarTareas() {
    var x = "";
 
    for (let i = 0; i < tareas.length; i++) {
- 
-      if (tareasHechas[i])
 
-       { x="checked";
+      if (tareasHechas[i]) {
 
-      s += "<li>" + "<input type='checkbox' " + x + " onchange='marcarTareas("+i+")'>" + tareas[i] +"</li>";
+         x = "checked";
+         
+      }
 
-     }
-   }
+         s += "<li>" + "<input type='checkbox' " + x + " onchange='marcarTareas(" + i + ")'>" + tareas[i] + "</li>";
+
+         }
 
    elemTareas.innerHTML = s;
-  
-  
-   }
 
 
-  function  añadirTareas() {
+}
+
+
+function añadirTareas() {
 
    let tarea = formulario.tareas.value;
 
@@ -46,30 +47,43 @@ function mostrarTareas() {
    return false;
 
 }
- 
-function marcarTareas(i)
 
-      { tareas[i] = !tareas[i];
+function marcarTareas(i) {
+   tareas[i] = !tareas[i];
 
-      guardarDatos();
+   guardarDatos();
 }
 
-function guardarDatos()
-
- { 
-    localStorage.setItem("tareas", JSON.stringify(tareas));
-    localStorage.setItem("tareasHechas",JSON.stringify(tareasHechas));
+function guardarDatos() {
+   localStorage.setItem("tareas", JSON.stringify(tareas));
+   localStorage.setItem("tareasHechas", JSON.stringify(tareasHechas));
 
 }
 
-function cargarDatos()
+function cargarDatos() {
+
+   tareas = JSON.parse(localStorage.getItem("tareas"));
+
+   tareasHechas = JSON.parse(localStorage.getItem("tareasHechas"));
+
+}
+
+function pendientes(x,i)
+
+{ 
+    return !tareasHechas[i];
+ }
+
+function borrarTareasHechas()
 
 {
-
-   tareas=JSON.parse(localStorage.getItem("tareas"));
-
-   tareasHechas=JSON.parse(localStorage.getItem("tareasHechas"));
+   tareas=tareas.filter(pendientes);
+   tareasHechas=[];
+   guardarDatos();
+   mostrarDatos();
 
 }
 
-      mostrarTareas();
+cargarDatos();
+
+mostrarTareas();
