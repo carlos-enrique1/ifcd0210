@@ -1,6 +1,8 @@
                   
    const elemTareas = document.getElementById("tareas");
 
+   const formulario = document.getElementById("formulario_tareas");
+
    var tareas = ["Aspirar al perro"];
 
    function mostrarTareas()
@@ -9,19 +11,29 @@
 
      for (let i =0; i < tareas.length; i++)
 
-     { s+= "<li>"+tareas[i]+"</li>";}
+     { s+= "<li>"+tareas[i]+"</li>"}
 
      elemTareas.innerHTML=s;
 }
 
-    function añadirTareas()
 
+    function añadirTareas()     
+    {   
+       let tarea = formulario_tareas.tareas.value;
 
-    function borrarTareas()
+       tareas.push(tarea);
 
+       mostrarTareas();
+
+       
+    }
+
+    
+
+          
    
    mostrarTareas();
 
    añadirTareas();
 
-   borrarTareas();
+ 
