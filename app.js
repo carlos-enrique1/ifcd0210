@@ -27,6 +27,8 @@ function añadirTareas() {
 
    mostrarTareas();
 
+   formulario.reset();
+
    return false
 }
 
