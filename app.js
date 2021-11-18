@@ -80,7 +80,7 @@ function borrarTareasHechas()
    tareas=tareas.filter(pendientes);
    tareasHechas=[];
    guardarDatos();
-   mostrarDatos();
+   mostrarTareas();
 
 }
 
