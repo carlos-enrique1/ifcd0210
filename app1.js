@@ -72,6 +72,16 @@ function marcarTareas(i) {
 
 }      
 
+function borrarTareasHechas()
+
+{
+   tareas=tareas.filter(pendientes);
+   tareasHechas=[];
+   guardarDatos();
+   mostrarTareas();
+
+}
+
 cargarDatos();
 
 mostrarTareas();
