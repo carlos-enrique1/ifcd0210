@@ -55,26 +55,24 @@
   <h1>Lista de Tareas</h1>
   <br>
    <!--action="procesar.php"-->
-  <form id="formulario_tareas" onsubmit="return añadirTareas()">
-    <br>
-   <label for="Lista de Tareas">Lista de Tareas</label>
-   
-    <input type="text" name="tareas" required>
-    <br>
-    <div class="boton">
-      <input type="submit"  class="boton_añadir_tareas" value="Añadir Tareas">
-    </div>
-       <br>
-      </form>    
 
-       <button type="button" onclick="borrarTareasHechas(event)">Eliminar tareas hechas</button>
-      </div>
-
+  <form id="formulario_tareas" onsubmit="return añadirTareas(event)">
+  <br>
+  <label for="Lista de Tareas">Lista de Tareas</label>
   
+  <input type="text" name="tarea" id="tarea" required>
+  <br>
+  <div class="boton">
+      <input type="submit"  class="boton_añadir_tareas" value="Añadir Tareas">
+  </div>
+  <br>
+  <button type="button" onclick="borrarTareasHechas(event)">Eliminar tareas hechas</button>
+     
+  </form>
 
-      <ul id="tareas"></ul>
+    <ul id="tareas"></ul>
 
-     <script src="app.js"></script>
+     <script src="app1.js"></script>
  
   
 </body>
