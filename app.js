@@ -1,13 +1,13 @@
 
 const elemTareas = document.getElementById("tareas");
 
-const formulario = document.getElementById("formulario");
+const formulario = document.getElementById("formulario_tareas");
 
 
 /* inicializamos el array vacia
 */
 
-var tareas = ["perro", "gato"];
+var tareas = [];
 
 var tareasHechas = [];
 
@@ -37,7 +37,7 @@ function mostrarTareas() {
   
 function añadirTareas() {
 
-tareas.push(formulario.value);
+tareas.push(formulario.tarea.value);
 
 mostrarTareas();
 
@@ -98,10 +98,11 @@ function pendientes(x,i)
 function borrarTareasHechas()
 
 {
-   tareas=tareas.filter(pendientes);
+   tareas=tareas.filter((t,i) => !tareasHechas[i];
    tareasHechas=[];
-   guardarDatos();
    mostrarTareas();
+   guardarDatos();
+
 
 }
 

@@ -66,9 +66,16 @@ function mostrarTareas() {
 */
 
 function marcarTareas(i) {
-   tareas[i] = !tareas[i];
+
+   debugger
+   console.log("marcarTareas");
+   console.log(tareas[i]);
+
+   debugger
+      tareasHechas[i] = !tareasHechas[i];
 
    guardarDatos();
+   mostrarTareas();
 
 }      
 
